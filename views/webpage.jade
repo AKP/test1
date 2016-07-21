@@ -1,0 +1,19 @@
+//
+   Created by akpillai on 19/07/16.
+
+extends layout
+
+block content
+    script.
+        window.onload=function(){
+            ;
+            window.setTimeout("rate.submit();", 3000);
+            // OR window.setTimeout(function() { redirect(); }, 5000);
+        };
+    p value for url is: #{result.url}
+
+    form#toRate(name = "rate", method = "post", action = "/rate")
+        img(src= "http://i.imgur.com/"+ result.url +".jpg", onclick="rate.submit();")
+
+
+

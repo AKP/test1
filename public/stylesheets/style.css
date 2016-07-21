@@ -1,0 +1,20 @@
+body {
+  padding: 50px;
+  font: 16px "Avenir", Nuinto, Helvetica, Arial, sans-serif;
+  background-color: #ecf0f1;
+
+}
+
+input{
+  background-color: aliceblue;
+}
+
+a {
+  color: #2c3e50;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
+}

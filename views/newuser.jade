@@ -1,0 +1,17 @@
+//
+   Created by akpillai on 15/07/16.
+
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/form.css')
+    h1= title
+    p Hello people this is a paragraph
+    .form-style-5
+        form#formAddUser(name="adduser",method="post",action="/adduser")
+            input#inputUserName(type="text", placeholder="Name (optional)", name="username")
+            input#inputUserEmail(type="text", placeholder="Email (optional)", name="email")
+            input#inputUserAge(type="text", placeholder="Age", name="age",required)
+            input#inputUserGender(type="text", placeholder="Gender", name="gender",required)
+            input#inputUserOrigin(type="text", placeholder="Origin Country", name="location",required)
+            button#btnSubmit(type="submit") Start

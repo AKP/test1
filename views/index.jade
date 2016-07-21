@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  h1 Jade - node template engine
+  #container.col
+    if youAreUsingJade
+      p You are amazing
+    else
+      p Get on it!
+
+  #wrapper
+    #display
+      #userdetails
+        form(method='post')
+          | Enter your name if you want to be a ninja
+          div
+            input(type='text', name='username')
+            input(type='text', name='age')
+            input(type='text', name='gender')
+            input(type='submit', value='Start!')
+
+
+

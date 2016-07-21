@@ -1,0 +1,30 @@
+//
+   Created by akpillai on 14/07/16.
+extends layout
+
+block content
+    link(rel='stylesheet', href='/stylesheets/rating.css')
+    link(href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet")
+    h1= title
+    p Welcome to #{title}
+
+    p Hello, World! Welcome #{session.user} to #{title}
+
+    div#wrapper
+        input#star1(type="radio", name="rating", value="1" checked="checked")
+        label(for="star1")
+        input#star2(type="radio", name="rating", value="2")
+        label(for="star2")
+        input#star3(type="radio", name="rating", value="3")
+        label(for="star3")
+        input#star4(type="radio", name="rating", value="4")
+        label(for="star4")
+        input#star5(type="radio", name="rating", value="5")
+        label(for="star5")
+        input#star6(type="radio", name="rating", value="6")
+        label(for="star6")
+        input#star7(type="radio", name="rating", value="7")
+        label(for="star7")
+
+
+        img(src= "http://i.imgur.com/fWMLiBD.jpg")
