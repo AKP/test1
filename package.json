@@ -17,7 +17,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "app.js"
   },
   "repository": {
     "type": "git",
@@ -29,4 +30,5 @@
     "url": "https://github.com/AKP/test1/issues"
   },
   "homepage": "https://github.com/AKP/test1#readme"
+
 }
