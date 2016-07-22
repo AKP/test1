@@ -10,7 +10,7 @@ var session = require('express-session');
 var mongo = require('mongodb');
 var monk = require('monk');
 // var db = monk('localhost:27017/nodetest1');
-var db = monk('a032a9c9d08244a5aaa0e3cab71f2795/iad2-c6-0.mongo.objectrocket.com:52088,iad2-c6-2.mongo.objectrocket.com:52088,iad2-c6-1.mongo.objectrocket.com:52088');
+var db = monk('mongodb://test_user:password@ds027175.mlab.com:27175/heroku_tnqdmhdl');
 
 db.then(() => {
     console.log('Connected correctly to server')
