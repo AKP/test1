@@ -12,9 +12,9 @@ var monk = require('monk');
 // var db = monk('localhost:27017/nodetest1');
 var db = monk('mongodb://test_user:password@ds027175.mlab.com:27175/heroku_tnqdmhdl');
 
-db.then(() => {
-    console.log('Connected correctly to server')
-})
+// db.then(() => {
+//     console.log('Connected correctly to server')
+// })
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
