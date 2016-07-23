@@ -4,13 +4,15 @@
 extends layout
 
 block content
+    link(rel='stylesheet', href='/stylesheets/webpage.css')
+
     script.
         window.onload=function(){
             ;
-            window.setTimeout("rate.submit();", 3000);
+            window.setTimeout("rate.submit();", 7000);
             // OR window.setTimeout(function() { redirect(); }, 5000);
         };
-    p value for url is: #{result.url}
+    //p value for url is: #{result.url}
 
     form#toRate(name = "rate", method = "post", action = "/rate")
         img(src= "http://i.imgur.com/"+ result.url +".jpg", onclick="rate.submit();")

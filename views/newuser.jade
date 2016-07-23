@@ -5,8 +5,21 @@ extends layout
 
 block content
     link(rel='stylesheet', href='/stylesheets/form.css')
+
+    //script.
+
     h1= title
-    p Hello people this is a paragraph
+    p Welcome,
+    | This is an experiment to understand user's perception on webpages when they are presented with it for a very small amount of time.
+    br
+    | &ensp;&ensp;&ensp;&ensp;&ensp;TASK (10min):
+    br
+    | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;A: After entering basic details, you will be presented with a webpage for a duration of 7seconds.
+    br
+    | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;B: After which a rating page will ask you to rate how was your like/dislike the of the page.
+
+
+
     .form-style-5
         form#formAddUser(name="adduser",method="post",action="/adduser")
             input#inputUserName(type="text", placeholder="Name (optional)", name="username")
@@ -14,4 +27,10 @@ block content
             input#inputUserAge(type="text", placeholder="Age", name="age",required)
             input#inputUserGender(type="text", placeholder="Gender", name="gender",required)
             input#inputUserOrigin(type="text", placeholder="Origin Country", name="location",required)
-            button#btnSubmit(type="submit") Start
+            button#btnSubmit(type="submit" onclick="submitCode();") Start
+
+        //button(type="" onclick="submitCode();") Start
+
+
+
+    p#note For the purpose of the experiment please switch your browser to fullscreen and click "Start".

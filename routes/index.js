@@ -10,7 +10,7 @@ var name;
 
 /* GET New User page. */
 router.get('/newuser', function(req, res) {
-  res.render('newuser', { title: 'Aalto UI Group' });
+  res.render('newuser', { title: 'Webpage perception' });
 });
 
 /* POST to Add User Service */
