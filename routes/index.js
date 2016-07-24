@@ -89,6 +89,10 @@ router.post('/rate', function(req, res, next) {
   name = req.session.user;
   req.session.user = name;
   console.log('In session' + name);
+
+  var timeElapsed = req.body.timeElapsed;
+  req.session.timeElapsed = timeElapsed;
+
   res.render('rate', req);
 });
 
@@ -100,6 +104,8 @@ router.post('/saverating', function(req, res) {
 
   // Get our form values. These rely on the "name" attributes
   var rating = req.body.rating;
+  var timeElapsed = req.session.timeElapsed;
+
 
   var collection = db.get('rating');
   // Submit to the DB
@@ -107,7 +113,8 @@ router.post('/saverating', function(req, res) {
     "user_id" : name,
     "webpage_id" : curr_id,
     "position" : list.length+1,
-    "rating" : rating
+    "rating" : rating,
+    "timeElapsed" : timeElapsed
   }, function (err, doc) {
     if (err) {
       // If it failed, return error
