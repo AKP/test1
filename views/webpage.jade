@@ -9,31 +9,55 @@ block content
     script.
         var lastClicked;
         window.onload=function(){
-            window.setTimeout("rate.submit();", 70000);
-            // OR window.setTimeout(function() { redirect(); }, 5000);
+            window.setTimeout("onClickCheck();", 7000);
             lastClicked=(new Date()).getTime();
         };
 
         function onClickCheck() {
+            document.getElementById("docHeight").value = $(document).height();
             var timeNow = (new Date()).getTime();
-        //            if (timeNow > (lastClicked + 5000)) {
-        //                // Execute the link action
-        //            }
-        //            else {
-        //                alert('Please wait at least 5 seconds between clicks!');
-
-        //    alert("LC " + lastClicked + " Timnoe " + timeNow);
-        //            }
-        //    alert("Time from page load is" + (timeNow-lastClicked)/1000);
             var timeElapsed = (timeNow-lastClicked)/1000;
             document.getElementById("time").value = timeElapsed;
+            if(document.getElementById("distanceScroll").value == ""){
+                document.getElementById("distanceScroll").value = $(window).height();
+                document.getElementById("percentScroll").value = 0;
+            }
             document.forms["rate"].submit();
-        //            lastClicked = timeNow;
         }
-    //p value for url is: #{result.url}
+
+        $(document).ready(function () {
+
+            var maxScroll = 0;
+
+
+            $(window).scroll(function (e) {
+                var scrollTop = $(window).scrollTop();
+                var docHeight = $(document).height();
+                var winHeight = $(window).height();
+                var scrollPercent = (scrollTop) / (docHeight - winHeight);
+                var scrollPercentRounded = Math.round(scrollPercent * 100);
+
+                console.log("Top: " + scrollTop);
+                console.log("Bot" + (docHeight - winHeight));
+                console.log("bot real" + (scrollTop + winHeight));
+
+                if(maxScroll<=(docHeight - winHeight)){
+                    maxScroll=(docHeight - winHeight);
+                    document.getElementById("distanceScroll").value = maxScroll;
+                    document.getElementById("percentScroll").value = scrollPercent*100;
+                }
+            });
+
+        });
+
+
 
     form#toRate(name = "rate", method = "post", action = "/rate")
-        img(src= "http://i.imgur.com/"+ result.url +".jpg" , onclick="onClickCheck();")
+        img(src= "http://i.imgur.com/"+ result.url +".png" , onclick="onClickCheck();")
         input#time(type="hidden", value="", name="timeElapsed")
+        input#percentScroll(type="hidden", value="", name="percentScroll")
+        input#distanceScroll(type="hidden", value="", name="distanceScroll")
+        input#docHeight(type="hidden", value="", name="docHeight")
+
 
 

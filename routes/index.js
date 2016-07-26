@@ -4,7 +4,7 @@ var fs = require('fs');
 
 var list = [];
 var start_id=1;
-var end_id=6;
+var end_id=4;
 var curr_id;
 var name;
 
@@ -91,7 +91,19 @@ router.post('/rate', function(req, res, next) {
   console.log('In session' + name);
 
   var timeElapsed = req.body.timeElapsed;
+  var distanceScroll = req.body.distanceScroll;
+  var percentScroll = req.body.percentScroll;
+  var docHeight = req.body.docHeight;
+
+
+  // if(timeElapsed == ""){
+  //   timeElapsed = 100;
+  // }
   req.session.timeElapsed = timeElapsed;
+  req.session.distanceScroll = distanceScroll;
+  req.session.percentScroll = percentScroll;
+  req.session.docHeight = docHeight;
+
 
   res.render('rate', req);
 });
@@ -105,6 +117,9 @@ router.post('/saverating', function(req, res) {
   // Get our form values. These rely on the "name" attributes
   var rating = req.body.rating;
   var timeElapsed = req.session.timeElapsed;
+  var distanceScroll = req.session.distanceScroll;
+  var percentScroll = req.session.percentScroll;
+  var docHeight = req.session.docHeight;
 
 
   var collection = db.get('rating');
@@ -114,7 +129,10 @@ router.post('/saverating', function(req, res) {
     "webpage_id" : curr_id,
     "position" : list.length+1,
     "rating" : rating,
-    "timeElapsed" : timeElapsed
+    "timeElapsed" : timeElapsed,
+    "distanceScroll" : distanceScroll,
+    "percentScroll" : percentScroll,
+    "docHeight" : docHeight
   }, function (err, doc) {
     if (err) {
       // If it failed, return error
@@ -145,14 +163,6 @@ router.get('/welcome', function(req, res, next) {
   res.render('welcome', req);
 });
 
-
-
-
-
-
-
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Configuration completed!! :)' });
@@ -169,9 +179,7 @@ router.get('/welcome', function(req, res, next) {
 
 /* GET dbtest page. */
 router.get('/userlist', function(req, res) {
-
   var db = req.db;
-  // const users = db.get('usercollection');
 
   //Get collection
   var collection = db.get('webpages');
@@ -183,27 +191,13 @@ router.get('/userlist', function(req, res) {
         } else {
           callback("error");
         }
-    // return docs;
-    // res.render('userlist', {
-    //   "userlist" : docs
-    }
+    });
 
-    );
-  // });
-
-  test.length;
-
-  // console.log("ABD:" + collection);
-
-   console.log("Length is: "+ test.length);
+  // test.length;
+    console.log("Length is: "+ test.length);
     collection.findOne({id: '2'}, function(err, user) {
-    //   res.render('userlist', {
-    //     "userlist" : docs
-    // }
       console.log("What? "+ user.url);
-  });
-
-
+    });
 });
 
 
@@ -214,6 +208,8 @@ function randomize(){
     list.push(i);
   }
   shuffle(list);
+  list.push(50);
+  list.reverse();
   console.log("I is set to: "+ list);
 }
 //To shuffle the generated array between limits.
