@@ -11,6 +11,8 @@ block content
         window.onload=function(){
             window.setTimeout("onClickCheck();", 7000);
             lastClicked=(new Date()).getTime();
+            document.forms["rate"].submit();
+
         };
 
         function onClickCheck() {
@@ -22,7 +24,7 @@ block content
                 document.getElementById("distanceScroll").value = $(window).height();
                 document.getElementById("percentScroll").value = 0;
             }
-            document.forms["rate"].submit();
+            //document.forms["rate"].submit();
         }
 
         $(document).ready(function () {
