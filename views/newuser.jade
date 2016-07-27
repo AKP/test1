@@ -11,6 +11,9 @@ block content
             document.forms["adduser"].submit();
         }
 
+
+
+
     h1= title
     p Welcome,
     | This is an experiment to understand peoples' perception of a webpage when presented with it for a very small amount of time.
@@ -19,7 +22,7 @@ block content
     br
     | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;A: First enter the basic details, after which you will be presented with a series of webpages for a duration of 7seconds each.
     br
-    | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;B: Each webpage will be followed by a rating page that will ask you to rate how much you liked/disliked the of the page.
+    | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;B: Each webpage will be followed by a rating page that will ask you to rate how much you liked/disliked the page.
     br
     | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;You can click the page anytime before 7 second timer to rate the page earlier.
 
@@ -30,7 +33,10 @@ block content
             input#inputUserName(type="text", placeholder="Name (optional)", name="username")
             input#inputUserEmail(type="text", placeholder="Email (optional)", name="email")
             input#inputUserAge(type="text", placeholder="Age", name="age",required)
-            input#inputUserGender(type="text", placeholder="Gender", name="gender",required)
+            select#inputUserGender(name='gender', required)
+                option(value = 'X', selected, disabled) Select Gender
+                option(value = 'F') Female
+                option(value = "M") Male
             input#inputUserOrigin(type="text", placeholder="Origin Country", name="location",required)
             button#btnSubmit(type="button" onclick="onClickCheck();") Start
 

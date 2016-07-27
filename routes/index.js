@@ -51,6 +51,7 @@ router.post('/adduser', function(req, res) {
       var abc = doc ._id;
       // console.log("User added as " + doc._id);
       req.session.user = abc;
+      req.session.list = list;
       res.redirect("webpage");
     }
   });
@@ -62,6 +63,7 @@ router.get('/webpage', function(req, res, next) {
   var db = req.db;
   console.log('In session ' + name);
   var collection = db.get('webpages');
+  list = req.session.list;
 
   // Get a value from the list and remove it from the it.
   curr_id= list[list.length-1];
@@ -69,7 +71,10 @@ router.get('/webpage', function(req, res, next) {
     res.render('thanks');
   }
   list.pop();
+  req.session.curr_id = curr_id;
   console.log("Current id is: "+curr_id);
+  console.log('List is' + list);
+
 
   collection.findOne({id: curr_id.toString()}, function(err, result){
     if (err)
@@ -88,7 +93,15 @@ router.get('/webpage', function(req, res, next) {
 router.post('/rate', function(req, res, next) {
   name = req.session.user;
   req.session.user = name;
+  list = req.session.list;
+  req.session.list = list;
+  curr_id = req.session.curr_id;
+  req.session.curr_id = curr_id;
+
+
   console.log('In session' + name);
+  console.log('List is' + list);
+
 
   var timeElapsed = req.body.timeElapsed;
   var distanceScroll = req.body.distanceScroll;
@@ -113,6 +126,13 @@ router.post('/saverating', function(req, res) {
 
   // Set our internal DB variable
   var db = req.db;
+  name = req.session.user;
+  req.session.user = name;
+  list = req.session.list;
+  req.session.list = list;
+  curr_id = req.session.curr_id;
+  req.session.curr_id = curr_id;
+
 
   // Get our form values. These rely on the "name" attributes
   var rating = req.body.rating;
@@ -150,9 +170,6 @@ router.post('/saverating', function(req, res) {
     }
   });
 
-
-  name = req.session.user;
-  req.session.user = name;
   res.redirect("webpage");
 });
 
