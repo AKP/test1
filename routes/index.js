@@ -4,7 +4,7 @@ var fs = require('fs');
 
 var list = [];
 var start_id=1;
-var end_id=4;
+var end_id=37;
 var curr_id;
 var name;
 
@@ -127,7 +127,7 @@ router.post('/saverating', function(req, res) {
   collection.insert({
     "user_id" : name,
     "webpage_id" : curr_id,
-    "position" : list.length+1,
+    "position" : end_id-list.length+1,
     "rating" : rating,
     "timeElapsed" : timeElapsed,
     "distanceScroll" : distanceScroll,

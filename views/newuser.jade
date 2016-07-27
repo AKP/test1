@@ -6,17 +6,22 @@ extends layout
 block content
     link(rel='stylesheet', href='/stylesheets/form.css')
 
-    //script.
+    script.
+        function onClickCheck() {
+            document.forms["adduser"].submit();
+        }
 
     h1= title
     p Welcome,
-    | This is an experiment to understand user's perception on webpages when they are presented with it for a very small amount of time.
+    | This is an experiment to understand peoples' perception of a webpage when presented with it for a very small amount of time.
     br
     | &ensp;&ensp;&ensp;&ensp;&ensp;TASK (10min):
     br
-    | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;A: After entering basic details, you will be presented with a webpage for a duration of 7seconds.
+    | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;A: First enter the basic details, after which you will be presented with a series of webpages for a duration of 7seconds each.
     br
-    | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;B: After which a rating page will ask you to rate how was your like/dislike the of the page.
+    | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;B: Each webpage will be followed by a rating page that will ask you to rate how much you liked/disliked the of the page.
+    br
+    | &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;You can click the page anytime before 7 second timer to rate the page earlier.
 
 
 
@@ -27,7 +32,7 @@ block content
             input#inputUserAge(type="text", placeholder="Age", name="age",required)
             input#inputUserGender(type="text", placeholder="Gender", name="gender",required)
             input#inputUserOrigin(type="text", placeholder="Origin Country", name="location",required)
-            button#btnSubmit(type="submit" onclick="submitCode();") Start
+            button#btnSubmit(type="button" onclick="onClickCheck();") Start
 
         //button(type="" onclick="submitCode();") Start
 
