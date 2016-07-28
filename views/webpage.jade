@@ -7,47 +7,72 @@ block content
     link(rel='stylesheet', href='/stylesheets/webpage.css')
 
     script.
-        var lastClicked;
+        var percentScrollMax;
+        //var lastClicked;
+        var scrollPercent=0;
         window.onload=function(){
             window.setTimeout("onClickCheck();", 7000);
-            lastClicked=(new Date()).getTime();
-            document.forms["rate"].submit();
+            //lastClicked=(new Date()).getTime();
+            //document.forms["rate"].submit();
 
         };
 
         function onClickCheck() {
             document.getElementById("docHeight").value = $(document).height();
-            var timeNow = (new Date()).getTime();
-            var timeElapsed = (timeNow-lastClicked)/1000;
-            document.getElementById("time").value = timeElapsed;
+            //var timeNow = (new Date()).getTime();
+            //var timeElapsed = (timeNow-lastClicked)/1000;
+            //document.getElementById("time").value = timeElapsed;
             if(document.getElementById("distanceScroll").value == ""){
                 document.getElementById("distanceScroll").value = $(window).height();
-                document.getElementById("percentScroll").value = 0;
+                //document.getElementById("percentScroll").value = 0;
             }
-            //document.forms["rate"].submit();
+
+            if (percentScrollMax < scrollPercent) {
+                document.getElementById("percentScroll").value = scrollPercent * 100;
+                percentScrollMax = scrollPercent;
+            }
+
+            if (document.getElementById("percentScroll").value == "") {
+                scrollPercent = ($(window).scrollTop() + $(window).height() ) / ( $(document).height());
+                document.getElementById("percentScroll").value = scrollPercent * 100;
+                document.getElementById("scrolled").value = 0;
+                //percentScrollMax = scrollPercent;
+            }
+
+            document.forms["rate"].submit();
+
         }
 
         $(document).ready(function () {
 
             var maxScroll = 0;
-
+            percentScrollMax =  $(window).height() / $(document).height();
 
             $(window).scroll(function (e) {
                 var scrollTop = $(window).scrollTop();
                 var docHeight = $(document).height();
                 var winHeight = $(window).height();
-                var scrollPercent = (scrollTop) / (docHeight - winHeight);
+                //scrollPercent = (scrollTop) / (docHeight - winHeight);
+                scrollPercent= (scrollTop + winHeight)/docHeight;
                 var scrollPercentRounded = Math.round(scrollPercent * 100);
 
-                console.log("Top: " + scrollTop);
-                console.log("Bot" + (docHeight - winHeight));
-                console.log("bot real" + (scrollTop + winHeight));
+                //console.log("Top: " + scrollTop);
+                //console.log("Bot" + (docHeight - winHeight));
+                //console.log("bot real" + (scrollTop + winHeight));
 
                 if(maxScroll<=(docHeight - winHeight)){
-                    maxScroll=(docHeight - winHeight);
+                    maxScroll=( scrollTop + winHeight);
+                    //console.log("Max" + maxScroll);
                     document.getElementById("distanceScroll").value = maxScroll;
-                    document.getElementById("percentScroll").value = scrollPercent*100;
+                    //document.getElementById("percentScroll").value = scrollPercent*100;
                 }
+
+                if(percentScrollMax<scrollPercent){
+                    document.getElementById("percentScroll").value = scrollPercent*100;
+                    console.log("percent" + (scrollPercent*100) + "%");
+                    percentScrollMax=scrollPercent;
+                }
+
             });
 
         });
@@ -55,8 +80,9 @@ block content
 
 
     form#toRate(name = "rate", method = "post", action = "/rate")
-        img(src= "http://i.imgur.com/"+ result.url +".png" , onclick="onClickCheck();")
-        input#time(type="hidden", value="", name="timeElapsed")
+        img(src= "http://i.imgur.com/"+ result.url +".png")
+        //input#time(type="hidden", value="", name="timeElapsed")
+        input#scrolled(type="hidden", value="1", name="scrolled")
         input#percentScroll(type="hidden", value="", name="percentScroll")
         input#distanceScroll(type="hidden", value="", name="distanceScroll")
         input#docHeight(type="hidden", value="", name="docHeight")
