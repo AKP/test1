@@ -60,7 +60,7 @@ block content
                 //console.log("Bot" + (docHeight - winHeight));
                 //console.log("bot real" + (scrollTop + winHeight));
 
-                if(maxScroll<=(docHeight - winHeight)){
+                if(maxScroll<=(scrollTop + winHeight)){
                     maxScroll=( scrollTop + winHeight);
                     //console.log("Max" + maxScroll);
                     document.getElementById("distanceScroll").value = maxScroll;
