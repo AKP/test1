@@ -103,7 +103,7 @@ router.post('/rate', function(req, res, next) {
   console.log('List is' + list);
 
 
-  var timeElapsed = req.body.timeElapsed;
+  var scrollTime = req.body.scrollTime;
   var distanceScroll = req.body.distanceScroll;
   var percentScroll = req.body.percentScroll;
   var docHeight = req.body.docHeight;
@@ -113,7 +113,7 @@ router.post('/rate', function(req, res, next) {
   // if(timeElapsed == ""){
   //   timeElapsed = 100;
   // }
-  req.session.timeElapsed = timeElapsed;
+  req.session.scrollTime = scrollTime;
   req.session.distanceScroll = distanceScroll;
   req.session.percentScroll = percentScroll;
   req.session.docHeight = docHeight;
@@ -139,7 +139,7 @@ router.post('/saverating', function(req, res) {
 
   // Get our form values. These rely on the "name" attributes
   var rating = req.body.rating;
-  var timeElapsed = req.session.timeElapsed;
+  var scrollTime = req.session.scrollTime;
   var distanceScroll = req.session.distanceScroll;
   var percentScroll = req.session.percentScroll;
   var docHeight = req.session.docHeight;
@@ -153,11 +153,11 @@ router.post('/saverating', function(req, res) {
     "webpage_id" : curr_id,
     "position" : end_id-list.length+1,
     "rating" : rating,
-
     "distanceScroll" : distanceScroll,
     "percentScroll" : percentScroll,
     "docHeight" : docHeight,
-    "scrolled" : scrolled
+    "scrolled" : scrolled,
+    "scrollTime" : scrollTime
   }, function (err, doc) {
     if (err) {
       // If it failed, return error

@@ -31,7 +31,7 @@ block content
         form#formAddUser(name="adduser",method="post",action="/adduser")
             input#inputUserName(type="text", placeholder="Name (optional)", name="username")
             input#inputUserEmail(type="text", placeholder="Email (optional)", name="email")
-            input#inputUserAge(type="text", placeholder="Age", name="age",required)
+            input#inputUserAge(type="number", placeholder="Age", name="age",required)
             select#inputUserGender(name='gender', required)
                 option(value = 'X', selected, disabled) Select Gender
                 option(value = 'F') Female

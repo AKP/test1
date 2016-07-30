@@ -7,12 +7,12 @@ block content
     link(rel='stylesheet', href='/stylesheets/webpage.css')
 
     script.
-        var percentScrollMax;
-        //var lastClicked;
+        var percentScrollMax, loadTime;
+        var scrollTime = 0;
         var scrollPercent=0;
         window.onload=function(){
             window.setTimeout("onClickCheck();", 7000);
-            //lastClicked=(new Date()).getTime();
+            loadTime=(new Date()).getTime();
             //document.forms["rate"].submit();
 
         };
@@ -49,6 +49,12 @@ block content
             percentScrollMax =  $(window).height() / $(document).height();
 
             $(window).scroll(function (e) {
+                if(scrollTime==0){
+                    var timeNow = (new Date()).getTime();
+                    scrollTime = (timeNow-loadTime)/1000;
+                    document.getElementById("scrollTime").value = scrollTime;
+                    console.log("LoadTime: "+ scrollTime)
+                }
                 var scrollTop = $(window).scrollTop();
                 var docHeight = $(document).height();
                 var winHeight = $(window).height();
@@ -69,7 +75,7 @@ block content
 
                 if(percentScrollMax<scrollPercent){
                     document.getElementById("percentScroll").value = scrollPercent*100;
-                    console.log("percent" + (scrollPercent*100) + "%");
+                    //console.log("percent" + (scrollPercent*100) + "%");
                     percentScrollMax=scrollPercent;
                 }
 
@@ -81,7 +87,7 @@ block content
 
     form#toRate(name = "rate", method = "post", action = "/rate")
         img(src= "http://i.imgur.com/"+ result.url +".png")
-        //input#time(type="hidden", value="", name="timeElapsed")
+        input#scrollTime(type="hidden", value="0", name="scrollTime")
         input#scrolled(type="hidden", value="1", name="scrolled")
         input#percentScroll(type="hidden", value="", name="percentScroll")
         input#distanceScroll(type="hidden", value="", name="distanceScroll")
