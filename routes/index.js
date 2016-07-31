@@ -101,7 +101,7 @@ router.post('/rate', function(req, res, next) {
 
   console.log('In session' + name);
   console.log('List is' + list);
-
+ var listCount= end_id-list.length+1;
 
   var scrollTime = req.body.scrollTime;
   var distanceScroll = req.body.distanceScroll;
@@ -120,7 +120,9 @@ router.post('/rate', function(req, res, next) {
   req.session.scrolled = scrolled;
 
 
-  res.render('rate', req);
+  res.render('rate', {
+    "length": listCount
+  });
 });
 
 /* POST to Rating Service */

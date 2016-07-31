@@ -52,7 +52,7 @@ block content
                 if(scrollTime==0){
                     var timeNow = (new Date()).getTime();
                     scrollTime = (timeNow-loadTime)/1000;
-                    document.getElementById("scrollTime").value = scrollTime;
+                    document.getElementById("time").value = scrollTime;
                     console.log("LoadTime: "+ scrollTime)
                 }
                 var scrollTop = $(window).scrollTop();
@@ -87,7 +87,7 @@ block content
 
     form#toRate(name = "rate", method = "post", action = "/rate")
         img(src= "http://i.imgur.com/"+ result.url +".png")
-        input#scrollTime(type="hidden", value="0", name="scrollTime")
+        input#time(type="hidden", value="0", name="scrollTime")
         input#scrolled(type="hidden", value="1", name="scrolled")
         input#percentScroll(type="hidden", value="", name="percentScroll")
         input#distanceScroll(type="hidden", value="", name="distanceScroll")
